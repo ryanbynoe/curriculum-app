@@ -7,9 +7,9 @@ pipeline {
       }
     }
 
-    stage('Log') {
+    stage('') {
       steps {
-        sh 'ls -la'
+        powershell 'ls -la'
       }
     }
 
