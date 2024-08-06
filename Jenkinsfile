@@ -26,7 +26,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'call docker_build.bat'
+        powershell 'call docker_build.bat'
       }
     }
 
