@@ -26,7 +26,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'docker build -f curriculum-front/Dockerfile . -t fuze365/curriculum-front'
+        sh 'docker build -f curriculum-front/Dockerfile . -t fuze365/curriculum-front'
       }
     }
 
