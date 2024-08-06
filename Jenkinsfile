@@ -26,7 +26,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        powershell 'docker build -f curriculum-front/Dockerfile . -t fuze365/curriculum-front'
+        bat 'call docker_build.bat'
       }
     }
 
