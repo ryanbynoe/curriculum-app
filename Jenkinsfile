@@ -32,8 +32,8 @@ pipeline {
 
     stage('Log Into DockerHub') {
       environment {
-        DOCKERHUB_USER = ''
-        DOCKERHUB_PASSWORD = ''
+        DOCKERHUB_USER = 'ryanabynoe'
+        DOCKERHUB_PASSWORD = 'tabboW-fuvnu0-mesfef'
       }
       steps {
         powershell 'function Test-Command($cmdname) {     return [bool](Get-Command -Name $cmdname -ErrorAction SilentlyContinue) }  if (-not (Test-Command "docker")) {     Write-Host "Error: Docker command not found. Please ensure Docker is installed and in your PATH." -ForegroundColor Red     exit 1 }  if (-not $env:DOCKERHUB_USER -or -not $env:DOCKERHUB_PASSWORD) {     Write-Host "Error: DOCKERHUB_USER and/or DOCKERHUB_PASSWORD environment variables are not set." -ForegroundColor Red     exit 1 }  try {     Write-Host "Attempting Docker login for user: $env:DOCKERHUB_USER" -ForegroundColor Cyan     $securePassword = ConvertTo-SecureString $env:DOCKERHUB_PASSWORD -AsPlainText -Force     $credential = New-Object System.Management.Automation.PSCredential ($env:DOCKERHUB_USER, $securePassword)          docker login -u $credential.UserName --password-stdin | Out-Null          if ($LASTEXITCODE -eq 0) {         Write-Host "Docker login successful." -ForegroundColor Green     } else {         throw "Docker login failed with exit code $LASTEXITCODE"     } } catch {     Write-Host "Error during Docker login: $_" -ForegroundColor Red     exit 1 } finally {     Remove-Variable -Name securePassword -ErrorAction SilentlyContinue     Remove-Variable -Name credential -ErrorAction SilentlyContinue }  Write-Host "Docker login script completed." -ForegroundColor Green'
