@@ -17,7 +17,7 @@ pipeline {
 
         stage('Front-End Unit Tests') {
           steps {
-            bat '@echo off REM Curriculum Front-end Test Script for Windows  cd curriculum-front && (     call npm i     if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%     call npm run test:unit     if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL% )'
+            bat '@echo off REM Curriculum Front-end Test Script for Windows  REM Change directory cd /d "%~dp0curriculum-front" if %ERRORLEVEL% neq 0 (     echo Failed to change directory to curriculum-front     exit /b %ERRORLEVEL% )  REM Install dependencies echo Installing npm dependencies... call npm install if %ERRORLEVEL% neq 0 (     echo npm install failed     exit /b %ERRORLEVEL% )  REM Run unit tests echo Running unit tests... call npm run test:unit if %ERRORLEVEL% neq 0 (     echo Unit tests failed     exit /b %ERRORLEVEL% )  echo All tasks completed successfully. exit /b 0'
           }
         }
 
