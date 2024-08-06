@@ -9,7 +9,7 @@ pipeline {
 
     stage('') {
       steps {
-        powershell 'ls -la'
+        bat 'ls -la'
       }
     }
 
