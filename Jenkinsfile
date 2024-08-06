@@ -8,8 +8,19 @@ pipeline {
     }
 
     stage('log') {
-      steps {
-        powershell 'dir'
+      parallel {
+        stage('log') {
+          steps {
+            powershell 'dir'
+          }
+        }
+
+        stage('Front-End Unit Tests') {
+          steps {
+            bat '@echo off REM Curriculum Front-end Test Script for Windows  cd curriculum-front && (     call npm i     if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%     call npm run test:unit     if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL% )'
+          }
+        }
+
       }
     }
 
