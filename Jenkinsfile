@@ -7,9 +7,9 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('log') {
       steps {
-        bat 'ls -la'
+        powershell 'dir'
       }
     }
 
